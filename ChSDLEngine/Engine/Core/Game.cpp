@@ -44,14 +44,50 @@ void Game::Run() {
 	}
 }
 
-
 void Game::InputProcess() {
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event)) {
-		if (event.type == SDL_QUIT) {
-			m_IsRunning = true;
+
+		switch (event.type) {
+
+		case SDL_QUIT:
+			cout << "[EVENT] | QUIT EVENT" << endl;
+			m_IsRunning = false;
+			Shutdown();
+			break;
+
+		case SDL_KEYDOWN:
+
+			cout << "[EVENT] | Key Pressed Down : " << SDL_GetKeyName(event.key.keysym.sym) << endl;
+			
+			switch (event.key.keysym.sym) {
+			case SDLK_ESCAPE:
+				Shutdown();
+				break;
+			
+			case SDLK_F11:
+				ToggleFullScreen();
+				break;
+			default:
+				break;
+			}
+			break;
+
+		case SDL_KEYUP:
+			cout << "[EVENT] | Key Released : " << SDL_GetKeyName(event.key.keysym.sym) << endl;
+			break;
+
+		case SDL_MOUSEMOTION:
+			cout << "[EVENT] | Mouse Movement : " << event.motion.x << ", " << event.motion.y << endl;
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			cout << "[EVENT] | Mouse Pressed : " << event.button.button << " | " << event.button.x << ", " << event.button.y << endl;
+			break;
 		}
+
+
 	}
 }
 
@@ -67,8 +103,29 @@ void Game::Render() {
 }
 
 void Game::Shutdown() {
-	if(m_Renderer) SDL_DestroyRenderer(m_Renderer);
-	if(m_Window) SDL_DestroyWindow(m_Window);
+
+	if (m_Renderer) { 
+		SDL_DestroyRenderer(m_Renderer); 
+		m_Renderer = nullptr;
+	}
+
+	if (m_Window) {
+		SDL_DestroyWindow(m_Window);
+		m_Window = nullptr;
+	} 
 
 	SDL_Quit();
+}
+
+void Game::ToggleFullScreen() {
+
+	//ENG this Fullscreen is Bordeless Window. for Native Fulscreen delete Desktop part
+	if (!m_IsFullScreen) {
+		SDL_SetWindowFullscreen(m_Window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	}
+	else
+	{
+		SDL_SetWindowFullscreen(m_Window, 0);
+	}
+	m_IsFullScreen = !m_IsFullScreen;
 }

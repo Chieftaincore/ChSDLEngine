@@ -22,12 +22,17 @@ private:
 	void Update(float Delta);
 	void Render();
 
+private:
+	void ToggleFullScreen();
+
 	//ENG Variables
 private:
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
 
 	bool m_IsRunning = false;
+
+	bool m_IsFullScreen = false;
 	int m_WindowWidth = 800;
 	int m_WindowHeight = 600;
 
