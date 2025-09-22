@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="App\main.cpp" />
     <ClCompile Include="Engine\Core\Game.cpp" />
+    <ClCompile Include="Engine\Objects\Placeholder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libavif-16.dll" />
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Game.h" />
+    <ClInclude Include="Engine\Objects\Placeholder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

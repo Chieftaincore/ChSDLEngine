@@ -1,14 +1,15 @@
 #pragma once
-
 #include<string>
 #include<SDL.h>
+#include<SDL_image.h>
+
+#include "../Objects/Placeholder.h"
 
 using namespace std;
 
 class Game
 {
-
-	//ENG Mainframe Stuff
+	//ENG Mainframe Stuff / TUR Ana-Çerçeve
 public:
 	Game();
 	~Game();
@@ -16,19 +17,23 @@ public:
 	void Run();
 	void Shutdown();
 
-	//ENG Functions
+	//ENG Game-Loop Functions / TUR Oyun Döngüsü Fonksiyonlar
 private:
 	void InputProcess();
 	void Update(float Delta);
 	void Render();
 
+	//ENG Core Functions / TUR Çekirdek Fonksiyonlar
 private:
 	void ToggleFullScreen();
+	SDL_Texture* LoadTexture(const string& path);
 
-	//ENG Variables
+	//Variables / TUR Deðiþkenler
 private:
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
+
+	Placeholder* placeholder = new Placeholder();
 
 	bool m_IsRunning = false;
 

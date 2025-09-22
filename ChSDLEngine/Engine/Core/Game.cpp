@@ -3,6 +3,9 @@
 
 using namespace std;
 
+constexpr int CORE_TARGET_FPS = 60;
+constexpr int FRAME_DELAY = 1000 / CORE_TARGET_FPS;
+
 Game::Game() {}
 
 Game::~Game() {
@@ -10,6 +13,9 @@ Game::~Game() {
 }
 
 bool Game::Init(const string& title, int width, int height) {
+
+	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG); // TUR SDL_Image Processor yüklenmesi için.
+
 	m_WindowWidth = width;
 	m_WindowHeight = height;
 
@@ -32,15 +38,50 @@ bool Game::Init(const string& title, int width, int height) {
 		return false;
 	}
 
+
+	SDL_Texture* text = LoadTexture("C:/Users/Bilgisayar/test.jpg");
+	placeholder->Texture = text;
+
+	SDL_QueryTexture(placeholder->Texture, nullptr, nullptr, &placeholder->plchDsT.w, &placeholder->plchDsT.h);
+
 	m_IsRunning = true;
 	return true;
 }
 
 void Game::Run() {
+
+	Uint64 now = SDL_GetPerformanceCounter();
+	Uint64 _Freq = SDL_GetPerformanceFrequency();
+
+	Uint32 _FPSTimer = SDL_GetTicks();
+	int _FPSCount = 0;
+
 	while (m_IsRunning) {
+
+		Uint64 elNow = SDL_GetPerformanceCounter();
+		float dTime = static_cast<float> (elNow - now) / _Freq;
+		now = elNow;
+
+		Uint32 frameStart = SDL_GetTicks();
+		_FPSCount++;
+
 		InputProcess();
-		Update(0.016f);
+		Update(dTime);
 		Render();
+		
+		Uint32 elapsed = SDL_GetTicks() - frameStart;
+
+		if (elapsed < FRAME_DELAY) {
+			SDL_Delay(FRAME_DELAY - elapsed);
+		}
+
+		if (SDL_GetTicks() - _FPSTimer > 1000) {
+			cout << "[FPS Timer] FPS :" << _FPSCount  << endl;
+
+			_FPSCount = 0;
+			_FPSTimer += 1000;
+		}
+
 	}
 }
 
@@ -87,18 +128,34 @@ void Game::InputProcess() {
 			break;
 		}
 
+		const Uint8* keys = SDL_GetKeyboardState(nullptr);
+
+		placeholder->InputDir = { 0.0f, 0.0f };
+
+		if (keys[SDL_SCANCODE_W]) placeholder->InputDir.y = -1.f;
+		if (keys[SDL_SCANCODE_D]) placeholder->InputDir.x = 1.f;
+		if (keys[SDL_SCANCODE_S]) placeholder->InputDir.y = 1.f;
+		if (keys[SDL_SCANCODE_A]) placeholder->InputDir.x = -1.f;
 
 	}
 }
 
-void Game::Update(float) {
-	//Game Logic will go here
+void Game::Update(float dTime) {
+	
+	placeholder->Move(dTime);
+
 }
 
 void Game::Render() {
 
 	SDL_SetRenderDrawColor(m_Renderer, 90,30,30,255);
 	SDL_RenderClear(m_Renderer);
+
+	placeholder->plchDsT.x = static_cast<int>(placeholder->Position.x);
+	placeholder->plchDsT.y = static_cast<int>(placeholder->Position.y);
+
+	SDL_RenderCopy(m_Renderer, placeholder->Texture, nullptr, &placeholder->plchDsT);
+
 	SDL_RenderPresent(m_Renderer);
 }
 
@@ -128,4 +185,24 @@ void Game::ToggleFullScreen() {
 		SDL_SetWindowFullscreen(m_Window, 0);
 	}
 	m_IsFullScreen = !m_IsFullScreen;
+}
+
+SDL_Texture* Game::LoadTexture(const string& path) {
+
+	SDL_Surface* Surface = IMG_Load(path.c_str());
+
+	if (!Surface) {
+		cerr << "Something went wrong on Texture Loading ERROR : IMG_Load | " << IMG_GetError() << endl;
+		return nullptr;
+	}
+
+	SDL_Texture* Texture = SDL_CreateTextureFromSurface(m_Renderer, Surface);
+	SDL_FreeSurface(Surface);
+
+	if (!Texture) {
+		cerr << "Something went wrong on Surface->Texture Conversion" << endl;
+		return nullptr;
+	}
+
+	return Texture;
 }
