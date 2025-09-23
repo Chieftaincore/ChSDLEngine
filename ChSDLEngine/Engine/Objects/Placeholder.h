@@ -12,6 +12,8 @@ public:
 	~Placeholder();
 
 	void Move(float DeltaTime);
+	void SetTexture(SDL_Texture* Texture);
+
 
 //ENG Vector Ýnformation
 public:
@@ -24,7 +26,7 @@ public:
 	Vec2 Position{ 100.f, 100.f };
 	Vec2 Velocity{ 100.f, 100.f };
 
-	float MoveSpeed = 180.f;
+	float MoveSpeed = 0.2f;
 	Vec2 InputDir{ 0.f ,0.f };
 
 private:

@@ -30,6 +30,7 @@ void PhysicsB2d::Shutdown() {
 void PhysicsB2d::Step(float DeltaTime) {
 	
 	b2World_Step(p_WorldId, DeltaTime, 4);
+
 }
 
 b2BodyId PhysicsB2d::CreateBox(float px, float py, float w, float h, bool dynamic, float density, float restitution) {
@@ -42,7 +43,7 @@ b2BodyId PhysicsB2d::CreateBox(float px, float py, float w, float h, bool dynami
 	b2BodyId body = b2CreateBody(p_WorldId, &def);
 
 	b2Polygon poly;
-	poly = b2MakeBox((w / p_PPM), (h / p_PPM));
+	poly = b2MakeBox(((w/2) / p_PPM), ((h/2) / p_PPM));
 
 	b2ShapeDef shapedef = b2DefaultShapeDef();
 	shapedef.density = density;

@@ -30,6 +30,10 @@ private:
 
 	//ENG Functions / TUR Çekirdek Fonksiyonlar
 private:
+
+	//ENG temporary before Objects/Entity implemantations.
+	void StartingProcedures();
+
 	void ToggleFullScreen();
 	SDL_Texture* LoadTexture(const string& path);
 

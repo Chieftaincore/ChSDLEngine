@@ -12,7 +12,7 @@ Placeholder::~Placeholder() {
 
 void Placeholder::Move(float DeltaTime)
 {
-	b2Vec2 impulse{ InputDir.x * 5.f, InputDir.y * 5.f };
+	b2Vec2 impulse{ InputDir.x * MoveSpeed, InputDir.y * MoveSpeed };
 
 	if (b2LengthSquared(impulse) > 0) {
 		
@@ -24,4 +24,11 @@ void Placeholder::Move(float DeltaTime)
 	Position.x = pos.x * PPM - plchDsT.w / 2;
 	Position.y = pos.y * PPM - plchDsT.h / 2;
 
+}
+
+void Placeholder::SetTexture(SDL_Texture* _texture) {
+
+	Texture = _texture;
+
+	SDL_QueryTexture(Texture, nullptr, nullptr, &plchDsT.w, &plchDsT.h);
 }

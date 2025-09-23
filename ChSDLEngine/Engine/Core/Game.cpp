@@ -40,34 +40,7 @@ bool Game::Init(const string& title, int width, int height) {
 	
 	Physics.Init(m_PPM, 0.f, 0.f);
 
-	SDL_Texture* text = LoadTexture("C:/Users/Bilgisayar/test.jpg");
-
-	placeholder->Texture = text;
-	placeholder2->Texture = text;
-
-	SDL_QueryTexture(placeholder->Texture, nullptr, nullptr, &placeholder->plchDsT.w, &placeholder->plchDsT.h);
-	SDL_QueryTexture(placeholder2->Texture, nullptr, nullptr, &placeholder2->plchDsT.w, &placeholder2->plchDsT.h);
-
-	placeholder->BodyInsId = Physics.CreateBox(
-				placeholder->Position.x + placeholder->plchDsT.w / 2,
-				placeholder->Position.y + placeholder->plchDsT.h / 2,
-				(float)placeholder->plchDsT.w, (float)placeholder->plchDsT.h,
-				true, 1.f, 0.8f);
-
-	placeholder2->MoveSpeed = 290.f;
-	placeholder2->Position.x = 500;
-	placeholder2->Position.y = 400;
-
-	placeholder2->BodyInsId = Physics.CreateBox(
-		placeholder2->Position.x + placeholder2->plchDsT.w / 2,
-		placeholder2->Position.y + placeholder2->plchDsT.h / 2,
-		(float)placeholder2->plchDsT.w, (float)placeholder2->plchDsT.h,
-		true, 1.f, 0.8f);
-
-	Physics.CreateBox(m_WindowWidth / 2, 0, m_WindowWidth, 10, false);
-	Physics.CreateBox(m_WindowWidth / 2, m_WindowHeight, m_WindowWidth, 10, false);
-	Physics.CreateBox(0, m_WindowHeight / 2, 10, m_WindowHeight, false);
-	Physics.CreateBox(m_WindowWidth, m_WindowHeight / 2, 10, m_WindowHeight, false);
+	StartingProcedures();
 
 	m_IsRunning = true;
 	return true;
@@ -198,6 +171,35 @@ void Game::Render() {
 	RQ.Shuffle(m_Renderer);
 
 	SDL_RenderPresent(m_Renderer);
+}
+
+void Game::StartingProcedures() {
+	SDL_Texture* text = LoadTexture("C:/Users/Bilgisayar/test.jpg");
+
+	placeholder->SetTexture(text);
+	placeholder2->SetTexture(text);
+
+	placeholder->BodyInsId = Physics.CreateBox(
+		placeholder->Position.x + placeholder->plchDsT.w / 2,
+		placeholder->Position.y + placeholder->plchDsT.h / 2,
+		(float)placeholder->plchDsT.w, (float)placeholder->plchDsT.h,
+		true, 1.f, 0.8f);
+
+	placeholder2->MoveSpeed = 2.0f;
+	placeholder2->Position.x = 500;
+	placeholder2->Position.y = 400;
+
+	placeholder2->BodyInsId = Physics.CreateBox(
+		placeholder2->Position.x + placeholder2->plchDsT.w / 2,
+		placeholder2->Position.y + placeholder2->plchDsT.h / 2,
+		(float)placeholder2->plchDsT.w, (float)placeholder2->plchDsT.h,
+		true, 1.f, 0.8f);
+
+	Physics.CreateBox(m_WindowWidth / 2, 0, m_WindowWidth, 10, false);
+	Physics.CreateBox(m_WindowWidth / 2, m_WindowHeight, m_WindowWidth, 10, false);
+	Physics.CreateBox(0, m_WindowHeight / 2, 10, m_WindowHeight, false);
+	Physics.CreateBox(m_WindowWidth, m_WindowHeight / 2, 10, m_WindowHeight, false);
+
 }
 
 void Game::Shutdown() {
