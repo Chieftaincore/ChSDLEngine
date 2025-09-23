@@ -29,7 +29,7 @@ void PhysicsB2d::Shutdown() {
 
 void PhysicsB2d::Step(float DeltaTime) {
 	
-	b2World_Step(p_WorldId, 1.f/ 60.f, 4);
+	b2World_Step(p_WorldId, DeltaTime, 4);
 }
 
 b2BodyId PhysicsB2d::CreateBox(float px, float py, float w, float h, bool dynamic, float density, float restitution) {

@@ -4,7 +4,9 @@
 #include<SDL_image.h>
 
 #include "PhysicsB2d.h"
+#include "RenderQueue.h"
 #include "../Objects/Placeholder.h"
+
 
 using namespace std;
 
@@ -37,8 +39,10 @@ private:
 	SDL_Renderer* m_Renderer;
 
 	PhysicsB2d Physics;
+	RenderQueue RQ;
 
 	Placeholder* placeholder = new Placeholder(m_PPM);
+	Placeholder* placeholder2 = new Placeholder(m_PPM);
 
 	bool m_IsRunning = false;
 

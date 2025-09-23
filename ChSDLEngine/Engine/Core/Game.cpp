@@ -37,20 +37,32 @@ bool Game::Init(const string& title, int width, int height) {
 		cerr << "Something went wrong on Renderer Creation || ERROR : " << SDL_GetError() << endl;
 		return false;
 	}
-
+	
 	Physics.Init(m_PPM, 0.f, 0.f);
 
 	SDL_Texture* text = LoadTexture("C:/Users/Bilgisayar/test.jpg");
 
 	placeholder->Texture = text;
+	placeholder2->Texture = text;
 
 	SDL_QueryTexture(placeholder->Texture, nullptr, nullptr, &placeholder->plchDsT.w, &placeholder->plchDsT.h);
+	SDL_QueryTexture(placeholder2->Texture, nullptr, nullptr, &placeholder2->plchDsT.w, &placeholder2->plchDsT.h);
 
 	placeholder->BodyInsId = Physics.CreateBox(
 				placeholder->Position.x + placeholder->plchDsT.w / 2,
 				placeholder->Position.y + placeholder->plchDsT.h / 2,
 				(float)placeholder->plchDsT.w, (float)placeholder->plchDsT.h,
 				true, 1.f, 0.8f);
+
+	placeholder2->MoveSpeed = 290.f;
+	placeholder2->Position.x = 500;
+	placeholder2->Position.y = 400;
+
+	placeholder2->BodyInsId = Physics.CreateBox(
+		placeholder2->Position.x + placeholder2->plchDsT.w / 2,
+		placeholder2->Position.y + placeholder2->plchDsT.h / 2,
+		(float)placeholder2->plchDsT.w, (float)placeholder2->plchDsT.h,
+		true, 1.f, 0.8f);
 
 	Physics.CreateBox(m_WindowWidth / 2, 0, m_WindowWidth, 10, false);
 	Physics.CreateBox(m_WindowWidth / 2, m_WindowHeight, m_WindowWidth, 10, false);
@@ -150,6 +162,12 @@ void Game::InputProcess() {
 		if (keys[SDL_SCANCODE_S]) placeholder->InputDir.y = 1.f;
 		if (keys[SDL_SCANCODE_A]) placeholder->InputDir.x = -1.f;
 
+		placeholder2->InputDir = { 0.0f, 0.0f };
+
+		if (keys[SDL_SCANCODE_UP]) placeholder2->InputDir.y = -1.f;
+		if (keys[SDL_SCANCODE_RIGHT]) placeholder2->InputDir.x = 1.f;
+		if (keys[SDL_SCANCODE_DOWN]) placeholder2->InputDir.y = 1.f;
+		if (keys[SDL_SCANCODE_LEFT]) placeholder2->InputDir.x = -1.f;
 	}
 }
 
@@ -158,6 +176,7 @@ void Game::Update(float dTime) {
 	Physics.Step(dTime);
 
 	placeholder->Move(dTime);
+	placeholder2->Move(dTime);
 
 }
 
@@ -165,11 +184,18 @@ void Game::Render() {
 
 	SDL_SetRenderDrawColor(m_Renderer, 90,30,30,255);
 	SDL_RenderClear(m_Renderer);
+	RQ.Clear();
 
 	placeholder->plchDsT.x = static_cast<int>(placeholder->Position.x);
 	placeholder->plchDsT.y = static_cast<int>(placeholder->Position.y);
+	placeholder2->plchDsT.x = static_cast<int>(placeholder2->Position.x);
+	placeholder2->plchDsT.y = static_cast<int>(placeholder2->Position.y);
 
-	SDL_RenderCopy(m_Renderer, placeholder->Texture, nullptr, &placeholder->plchDsT);
+
+	RQ.Add({placeholder->Texture, placeholder->plchDsT, SDL_Rect{0,0,0,0}, 10});
+	RQ.Add({placeholder2->Texture, placeholder2->plchDsT, SDL_Rect{0,0,0,0}, 10});
+
+	RQ.Shuffle(m_Renderer);
 
 	SDL_RenderPresent(m_Renderer);
 }

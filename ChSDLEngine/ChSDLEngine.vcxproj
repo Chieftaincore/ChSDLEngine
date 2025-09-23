@@ -142,6 +142,7 @@
     <ClCompile Include="App\main.cpp" />
     <ClCompile Include="Engine\Core\Game.cpp" />
     <ClCompile Include="Engine\Core\PhysicsB2d.cpp" />
+    <ClCompile Include="Engine\Core\RenderQueue.cpp" />
     <ClCompile Include="Engine\Objects\Placeholder.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Core\Game.h" />
     <ClInclude Include="Engine\Core\PhysicsB2d.h" />
+    <ClInclude Include="Engine\Core\RenderQueue.h" />
     <ClInclude Include="Engine\Objects\Placeholder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
