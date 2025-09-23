@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include <box2d.h>
 #include <SDL.h>
 
@@ -20,8 +20,7 @@ public:
 
 private:
 	//Pixels per Meter
-
 	b2WorldId p_WorldId;
-
+	bool WorldValid;
 
 };
