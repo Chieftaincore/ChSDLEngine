@@ -3,9 +3,12 @@
 #include<SDL.h>
 #include<SDL_image.h>
 
+#include "PhysicsB2d.h"
 #include "../Objects/Placeholder.h"
 
 using namespace std;
+
+constexpr float m_PPM = 100.f;
 
 class Game
 {
@@ -23,7 +26,7 @@ private:
 	void Update(float Delta);
 	void Render();
 
-	//ENG Core Functions / TUR Çekirdek Fonksiyonlar
+	//ENG Functions / TUR Çekirdek Fonksiyonlar
 private:
 	void ToggleFullScreen();
 	SDL_Texture* LoadTexture(const string& path);
@@ -33,7 +36,9 @@ private:
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
 
-	Placeholder* placeholder = new Placeholder();
+	PhysicsB2d Physics;
+
+	Placeholder* placeholder = new Placeholder(m_PPM);
 
 	bool m_IsRunning = false;
 

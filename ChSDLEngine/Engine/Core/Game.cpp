@@ -13,8 +13,10 @@ Game::~Game() {
 }
 
 bool Game::Init(const string& title, int width, int height) {
-
+	 
 	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG); // TUR SDL_Image Processor yüklenmesi için.
+
+	Physics.Init(m_PPM,0.f,0.f);
 
 	m_WindowWidth = width;
 	m_WindowHeight = height;
@@ -40,9 +42,21 @@ bool Game::Init(const string& title, int width, int height) {
 
 
 	SDL_Texture* text = LoadTexture("C:/Users/Bilgisayar/test.jpg");
-	placeholder->Texture = text;
 
 	SDL_QueryTexture(placeholder->Texture, nullptr, nullptr, &placeholder->plchDsT.w, &placeholder->plchDsT.h);
+
+	placeholder->Texture = text;
+	placeholder->BodyInsId = Physics.CreateBox(
+				placeholder->Position.x + placeholder->plchDsT.w / 2,
+				placeholder->Position.y + placeholder->plchDsT.h / 2,
+				(float)placeholder->plchDsT.w, (float)placeholder->plchDsT.h,
+				true, 1.f, 0.8f);
+
+
+	Physics.CreateBox(m_WindowWidth / 2, 0, m_WindowWidth, 10, false);
+	Physics.CreateBox(m_WindowWidth / 2, m_WindowHeight, m_WindowWidth, 10, false);
+	Physics.CreateBox(0, m_WindowHeight / 2, 10, m_WindowHeight, false);
+	Physics.CreateBox(m_WindowWidth, m_WindowHeight / 2, 10, m_WindowHeight, false);
 
 	m_IsRunning = true;
 	return true;
@@ -144,6 +158,8 @@ void Game::Update(float dTime) {
 	
 	placeholder->Move(dTime);
 
+	Physics.Step(dTime);
+
 }
 
 void Game::Render() {
@@ -170,6 +186,8 @@ void Game::Shutdown() {
 		SDL_DestroyWindow(m_Window);
 		m_Window = nullptr;
 	} 
+
+	Physics.Shutdown();
 
 	SDL_Quit();
 }

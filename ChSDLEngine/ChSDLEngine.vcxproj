@@ -76,13 +76,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\include;C:\Users\Bilgisayar\Libs\Box2D\box2d-3.1.1\include\box2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\lib\x64;C:\Users\Bilgisayar\Libs\Box2D\box2d-3.1.1\build\src\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;box2dd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -93,15 +93,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\include;C:\Users\Bilgisayar\Libs\Box2D\box2d-3.1.1\include\box2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\lib\x64;C:\Users\Bilgisayar\Libs\Box2D\box2d-3.1.1\build\src\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -110,13 +110,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\include;C:\Users\Bilgisayar\Libs\Box2D\box2d-3.1.1\include\box2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\lib\x64;C:\Users\Bilgisayar\Libs\Box2D\box2d-3.1.1\build\src\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;box2dd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -127,20 +127,21 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\include;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\include;C:\Users\Bilgisayar\Libs\Box2D\box2d-3.1.1\include\box2d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-TTF\SDL2_ttf-2.24.0\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-mixer\SDL2_mixer-2.8.1\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-image\SDL2_image-2.8.6\lib\x64;C:\Users\Bilgisayar\Libs\Simple DirectMedia Layer\SDL2\SDL2-2.32.10\lib\x64;C:\Users\Bilgisayar\Libs\Box2D\box2d-3.1.1\build\src\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\main.cpp" />
     <ClCompile Include="Engine\Core\Game.cpp" />
+    <ClCompile Include="Engine\Core\PhysicsB2d.cpp" />
     <ClCompile Include="Engine\Objects\Placeholder.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Game.h" />
+    <ClInclude Include="Engine\Core\PhysicsB2d.h" />
     <ClInclude Include="Engine\Objects\Placeholder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
