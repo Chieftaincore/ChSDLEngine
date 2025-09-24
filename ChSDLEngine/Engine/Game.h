@@ -5,6 +5,7 @@
 
 #include "Core/PhysicsB2d.h"
 #include "Core/RenderQueue.h"
+#include "Asset/FontManager.h"
 #include "Asset/AssetManager.h"
 #include "Objects/Placeholder.h"
 #include "Core/SpriteAnimation.h"
@@ -46,6 +47,10 @@ private:
 	PhysicsB2d Physics;
 	RenderQueue RQ;
 	AssetManager AM;
+	FontManager FM;
+
+	SDL_Texture* FPS_FontTexture = nullptr;
+	SDL_Rect FPS_TextRect = {12,12,0,0};
 
 	sAnimationClip aClip;
 	AnimatedSprite aSprite;

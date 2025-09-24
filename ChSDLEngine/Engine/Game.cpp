@@ -40,8 +40,11 @@ bool Game::Init(const string& title, int width, int height) {
 	
 	Physics.Init(m_PPM, 0.f, 0.f);
 
+	//Asset Manager
 	AM.Init(m_Renderer);
 
+	//Font Manager
+	FM.Init(m_Renderer);
 
 	StartingProcedures();
 
@@ -77,7 +80,17 @@ void Game::Run() {
 		}
 
 		if (SDL_GetTicks() - _FPSTimer > 1000) {
+		
+			//ENG!!!! This causes to FPStimer on screen to behave inconsistent but without it there will be a lots of memory will be written for no reason
+			SDL_DestroyTexture(FPS_FontTexture);
+			//So a solution is needed preferly within the FontManager.
+
 			cout << "[FPS Timer] FPS :" << _FPSCount  << endl;
+
+			string txt = "[FPS] : " + to_string(_FPSCount);
+
+			FPS_FontTexture = FM.GetTextTexture(txt, "Assets/Fonts/Roboto-Bold.ttf", 12);
+			SDL_QueryTexture(FPS_FontTexture, nullptr, nullptr, &FPS_TextRect.w, &FPS_TextRect.h);
 
 			_FPSCount = 0;
 			_FPSTimer += 1000;
@@ -171,6 +184,7 @@ void Game::Render() {
 	placeholder2->plchDsT.x = static_cast<int>(placeholder2->Position.x);
 	placeholder2->plchDsT.y = static_cast<int>(placeholder2->Position.y);
 
+	RQ.Add({ FPS_FontTexture, FPS_TextRect, SDL_Rect{0,0,0,0}, 200});
 	RQ.Add({placeholder->Texture, placeholder->plchDsT, SDL_Rect{0,0,0,0}, 10});
 	RQ.Add({placeholder2->Texture, placeholder2->plchDsT, SDL_Rect{0,0,0,0}, 10});
 
@@ -181,11 +195,12 @@ void Game::Render() {
 
 void Game::StartingProcedures() {
 
-	placeholder->SetTexture(AM.GetTexture("test", "C:/Users/Bilgisayar/test.jpg"));
-	placeholder2->SetTexture(AM.GetTexture("test", "C:/Users/Bilgisayar/test.jpg"));
+	placeholder->SetTexture(AM.GetTexture("test", "Assets/Images/test.jpg"));
+	placeholder2->SetTexture(AM.GetTexture("test", "Assets/Images/test.jpg"));
 
-	SDL_Texture* AnimatedSprite = AM.GetTexture("colorsanim","C:/Users/Bilgisayar/source/repos/ChSDLEngine/ChSDLEngine/Assets/spriteanimtest.png");
+	SDL_Texture* AnimatedSprite = AM.GetTexture("colorsanim","Assets/Images/spriteanimtest.png");
 	const int w = 90, h = 90, frames = 4;
+
 
 	for (int i = 0; i < frames; i++) {
 		aClip.frames.push_back({i * w,0,w,h});
@@ -225,17 +240,21 @@ void Game::StartingProcedures() {
 
 void Game::Shutdown() {
 
+	AM.Shutdown();
+
 	if (m_Renderer) { 
 		SDL_DestroyRenderer(m_Renderer); 
 		m_Renderer = nullptr;
 	}
-	
-	Physics.Shutdown();
 
 	if (m_Window) {
 		SDL_DestroyWindow(m_Window);
 		m_Window = nullptr;
 	} 
+
+	Physics.Shutdown();
+
+	FM.Shutdown();
 
 	SDL_Quit();
 }
