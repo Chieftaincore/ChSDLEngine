@@ -3,10 +3,11 @@
 #include<SDL.h>
 #include<SDL_image.h>
 
-#include "PhysicsB2d.h"
-#include "RenderQueue.h"
-#include "../Objects/Placeholder.h"
-
+#include "Core/PhysicsB2d.h"
+#include "Core/RenderQueue.h"
+#include "Asset/AssetManager.h"
+#include "Objects/Placeholder.h"
+#include "Core/SpriteAnimation.h"
 
 using namespace std;
 
@@ -44,6 +45,11 @@ private:
 
 	PhysicsB2d Physics;
 	RenderQueue RQ;
+	AssetManager AM;
+
+	sAnimationClip aClip;
+	AnimatedSprite aSprite;
+	AnimationSystem animationSystem;
 
 	Placeholder* placeholder = new Placeholder(m_PPM);
 	Placeholder* placeholder2 = new Placeholder(m_PPM);

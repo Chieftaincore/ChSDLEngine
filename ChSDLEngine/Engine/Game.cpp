@@ -40,6 +40,9 @@ bool Game::Init(const string& title, int width, int height) {
 	
 	Physics.Init(m_PPM, 0.f, 0.f);
 
+	AM.Init(m_Renderer);
+
+
 	StartingProcedures();
 
 	m_IsRunning = true;
@@ -151,6 +154,8 @@ void Game::Update(float dTime) {
 	placeholder->Move(dTime);
 	placeholder2->Move(dTime);
 
+	animationSystem.Update(dTime);
+
 }
 
 void Game::Render() {
@@ -159,11 +164,12 @@ void Game::Render() {
 	SDL_RenderClear(m_Renderer);
 	RQ.Clear();
 
+	aSprite.Draw(RQ, 5);
+
 	placeholder->plchDsT.x = static_cast<int>(placeholder->Position.x);
 	placeholder->plchDsT.y = static_cast<int>(placeholder->Position.y);
 	placeholder2->plchDsT.x = static_cast<int>(placeholder2->Position.x);
 	placeholder2->plchDsT.y = static_cast<int>(placeholder2->Position.y);
-
 
 	RQ.Add({placeholder->Texture, placeholder->plchDsT, SDL_Rect{0,0,0,0}, 10});
 	RQ.Add({placeholder2->Texture, placeholder2->plchDsT, SDL_Rect{0,0,0,0}, 10});
@@ -174,10 +180,25 @@ void Game::Render() {
 }
 
 void Game::StartingProcedures() {
-	SDL_Texture* text = LoadTexture("C:/Users/Bilgisayar/test.jpg");
 
-	placeholder->SetTexture(text);
-	placeholder2->SetTexture(text);
+	placeholder->SetTexture(AM.GetTexture("test", "C:/Users/Bilgisayar/test.jpg"));
+	placeholder2->SetTexture(AM.GetTexture("test", "C:/Users/Bilgisayar/test.jpg"));
+
+	SDL_Texture* AnimatedSprite = AM.GetTexture("colorsanim","C:/Users/Bilgisayar/source/repos/ChSDLEngine/ChSDLEngine/Assets/spriteanimtest.png");
+	const int w = 90, h = 90, frames = 4;
+
+	for (int i = 0; i < frames; i++) {
+		aClip.frames.push_back({i * w,0,w,h});
+	}
+
+	aClip.tex = AnimatedSprite;
+	aClip.animFPS = 6.f;
+
+	aSprite.SetClip(&aClip);
+	aSprite.x = 600;
+	aSprite.y = 400;
+
+	animationSystem.Add(&aSprite);
 
 	placeholder->BodyInsId = Physics.CreateBox(
 		placeholder->Position.x + placeholder->plchDsT.w / 2,
