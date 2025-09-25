@@ -5,10 +5,13 @@
 
 #include "Core/PhysicsB2d.h"
 #include "Core/RenderQueue.h"
+#include "Core/SpriteAnimation.h"
+
+#include "Asset/SoundMixer.h"
 #include "Asset/FontManager.h"
 #include "Asset/AssetManager.h"
+
 #include "Objects/Placeholder.h"
-#include "Core/SpriteAnimation.h"
 
 using namespace std;
 
@@ -48,8 +51,14 @@ private:
 	RenderQueue RQ;
 	AssetManager AM;
 	FontManager FM;
+	
+	SoundMixer SM;
+
+
+
 
 	SDL_Texture* FPS_FontTexture = nullptr;
+	string FPS_Text;
 	SDL_Rect FPS_TextRect = {12,12,0,0};
 
 	sAnimationClip aClip;
@@ -60,6 +69,7 @@ private:
 	Placeholder* placeholder2 = new Placeholder(m_PPM);
 
 	bool m_IsRunning = false;
+	bool m_IsPaused = false;
 
 	bool m_IsFullScreen = false;
 	int m_WindowWidth = 800;

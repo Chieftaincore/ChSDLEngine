@@ -29,7 +29,7 @@ class FontManager {
 
 		TTF_Font* GetFont(const string& path, int ptSize);
 		SDL_Texture* GetTextTexture(const string& text, const string& fontPath, int ptSize, SDL_Color color = {255,255,255,255});
-
+		SDL_Texture* ContuniousUpdateText(const string& OldTexture, const string& text, const string& fontpath, int ptSize, SDL_Color color = {255,255,255,255});
 
 private:
 	SDL_Renderer* Renderer = nullptr;

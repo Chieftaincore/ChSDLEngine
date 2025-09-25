@@ -46,6 +46,9 @@ bool Game::Init(const string& title, int width, int height) {
 	//Font Manager
 	FM.Init(m_Renderer);
 
+	//Sound Mixer
+	SM.Init();
+
 	StartingProcedures();
 
 	m_IsRunning = true;
@@ -81,15 +84,12 @@ void Game::Run() {
 
 		if (SDL_GetTicks() - _FPSTimer > 1000) {
 		
-			//ENG!!!! This causes to FPStimer on screen to behave inconsistent but without it there will be a lots of memory will be written for no reason
-			SDL_DestroyTexture(FPS_FontTexture);
-			//So a solution is needed preferly within the FontManager.
-
 			cout << "[FPS Timer] FPS :" << _FPSCount  << endl;
 
-			string txt = "[FPS] : " + to_string(_FPSCount);
+			string oldText = FPS_Text;
+			FPS_Text = "[FPS] : " + to_string(_FPSCount);
 
-			FPS_FontTexture = FM.GetTextTexture(txt, "Assets/Fonts/Roboto-Bold.ttf", 12);
+			FPS_FontTexture = FM.ContuniousUpdateText(oldText, FPS_Text , "Assets/Fonts/Roboto-Bold.ttf", 12);
 			SDL_QueryTexture(FPS_FontTexture, nullptr, nullptr, &FPS_TextRect.w, &FPS_TextRect.h);
 
 			_FPSCount = 0;
@@ -118,9 +118,12 @@ void Game::InputProcess() {
 			
 			switch (event.key.keysym.sym) {
 			case SDLK_ESCAPE:
-				Shutdown();
 				break;
 			
+			case SDLK_e:
+				SM.PlayMix("Sample");
+				break;
+
 			case SDLK_F11:
 				ToggleFullScreen();
 				break;
@@ -198,9 +201,10 @@ void Game::StartingProcedures() {
 	placeholder->SetTexture(AM.GetTexture("test", "Assets/Images/test.jpg"));
 	placeholder2->SetTexture(AM.GetTexture("test", "Assets/Images/test.jpg"));
 
+	SM.GetSound("Sample","./Assets/Sound/Sample.wav");
+
 	SDL_Texture* AnimatedSprite = AM.GetTexture("colorsanim","Assets/Images/spriteanimtest.png");
 	const int w = 90, h = 90, frames = 4;
-
 
 	for (int i = 0; i < frames; i++) {
 		aClip.frames.push_back({i * w,0,w,h});
@@ -239,8 +243,12 @@ void Game::StartingProcedures() {
 }
 
 void Game::Shutdown() {
+	
+	m_IsRunning = false;
 
 	AM.Shutdown();
+	
+	Physics.Shutdown();
 
 	if (m_Renderer) { 
 		SDL_DestroyRenderer(m_Renderer); 
@@ -251,8 +259,6 @@ void Game::Shutdown() {
 		SDL_DestroyWindow(m_Window);
 		m_Window = nullptr;
 	} 
-
-	Physics.Shutdown();
 
 	FM.Shutdown();
 

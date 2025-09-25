@@ -143,6 +143,7 @@
     <ClCompile Include="App\main.cpp" />
     <ClCompile Include="Engine\Asset\AssetManager.cpp" />
     <ClCompile Include="Engine\Asset\FontManager.cpp" />
+    <ClCompile Include="Engine\Asset\SoundMixer.cpp" />
     <ClCompile Include="Engine\Core\SpriteAnimation.cpp" />
     <ClCompile Include="Engine\Game.cpp" />
     <ClCompile Include="Engine\Core\PhysicsB2d.cpp" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Asset\AssetManager.h" />
     <ClInclude Include="Engine\Asset\FontManager.h" />
+    <ClInclude Include="Engine\Asset\SoundMixer.h" />
     <ClInclude Include="Engine\Core\SpriteAnimation.h" />
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\Core\PhysicsB2d.h" />

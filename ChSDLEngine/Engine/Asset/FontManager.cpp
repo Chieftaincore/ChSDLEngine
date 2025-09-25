@@ -44,6 +44,27 @@ SDL_Texture* FontManager::GetTextTexture(const string& text, const string& fontP
 	return texture;
 }
 
+/// <summary>
+/// ENG Deletes the old Cache And Texture then Returns the New Texture so there will be no Dangling points or Memory Leak
+/// Use it for continously Updating Fonts.
+/// </summary>
+/// <returns>Returns the New texture</returns>
+SDL_Texture* FontManager::ContuniousUpdateText(const string& oldtext ,const string& text, const string& fontPath, int ptSize, SDL_Color color) {
+
+	const string oldcachekey = text + "|" + fontPath + "|" + to_string(ptSize);
+
+		SDL_DestroyTexture(TextCacheMap[oldcachekey]);
+		TextCacheMap.erase(oldcachekey);
+
+		cout << "[Erased Cache] : " << oldcachekey << endl;
+		cout << "[Destroyed Texture] : " << oldcachekey << endl;
+	
+
+	SDL_Texture* Texture = GetTextTexture(text, fontPath, ptSize, color);
+
+	return Texture;
+}
+
 void FontManager::Shutdown() {
 
 	for (auto& ctd : TextCacheMap) SDL_DestroyTexture(ctd.second);
